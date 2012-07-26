@@ -7,7 +7,7 @@ except ImportError:
 
 setup(
     name='django-mptt-treechangelist',
-    version='0.1',
+    version='0.1.1',
     description='MPTT Tree Change List Django',
     long_description=open('README.rst').read(),
     url='https://github.com/blancltd/django-mptt-treechangelist',
