@@ -48,7 +48,7 @@ var TreeChangelist = {};
 
     // Add a node to the expanded list
     function add_expanded_node(node_id) {
-        if (expanded_nodes.indexOf(node_id) === -1) {
+        if ($.inArray(node_id, expanded_nodes) === -1) {
             expanded_nodes.push(node_id);
         }
         save_expanded_nodes();
@@ -56,7 +56,7 @@ var TreeChangelist = {};
 
     // Remove a node from the expanded list
     function remove_expanded_node(node_id) {
-        var remove_index = expanded_nodes.indexOf(node_id);
+        var remove_index = $.inArray(node_id, expanded_nodes);
         if (remove_index > -1) {
             expanded_nodes.splice(remove_index, 1);
         }
