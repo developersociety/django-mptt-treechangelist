@@ -4,7 +4,8 @@ var TreeChangelist = {};
 
 (function($) {
     var tree_structure,
-        csrf_token;
+        csrf_token,
+        current_root_level = null;
 
     // Called from change_list.html
     TreeChangelist.setup_structure = function(structure) {
@@ -146,6 +147,9 @@ var TreeChangelist = {};
         var actions_id = parseInt($(elem).find(".tree_actions").attr("id").replace("tree_actions_", ""), 10),
             first_th  = $(elem).find("th").first(),
             node = tree_structure[actions_id];
+        if(current_root_level === null || node.l < current_root_level) {
+            current_root_level = node.l;
+        }
 
         $(elem).attr("id", "tree_item_"+actions_id);
 
@@ -160,7 +164,10 @@ var TreeChangelist = {};
         }
 
         // Show all root nodes
-        if (node.r === true) {
+        if (node.l == current_root_level) {
+            // It's a "relative root node"
+            // i.e. the root for its tree on this page
+            node.r = true;
             $(elem).addClass(node_visible_class);
         }
     }
